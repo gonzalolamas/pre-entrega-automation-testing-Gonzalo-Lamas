@@ -11,8 +11,8 @@ PASSWORD = 'secret_sauce'
 
 def get_driver():
 
-    # options  = Options()
-    # options.add_argument('--start-maximized')
+    options  = Options()
+    options.add_argument('--start-maximized')
 
 
     #instalacion de driver

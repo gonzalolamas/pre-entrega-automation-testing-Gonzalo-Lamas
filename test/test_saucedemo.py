@@ -28,42 +28,35 @@ def test_catalogo( driver ):
     products = driver.find_elements(By.CLASS_NAME, 'inventory_item')
     assert len(products) > 0
 
+    # products[0] = driver.find_element(By.CLASS_NAME, 'inventory_item_name').text
+    # assert products[0] == 'Sauce Labs Backpack' 
+
+    first_product_name = products[0].find_element(By.CLASS_NAME, "inventory_item_name").text
+    assert first_product_name == "Sauce Labs Backpack"
+
+    second_product_price = products[1].find_element(By.CLASS_NAME, "inventory_item_price").text
+    assert second_product_price == '$9.99' 
+
 def test_carrito( driver ):
     login_saucedemo( driver )
 
     products = driver.find_elements(By.CLASS_NAME, 'inventory_item')
-    # total_productos = len(products)
+    total_productos = len(products)
     assert len(products) > 0
 
-    products[0].find_element(By.TAG_NAME, 'button').click()
+#     products[0].find_element(By.TAG_NAME, 'button').click()
 
-    badge = driver.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-    assert badge == "1"  
+#     badge = driver.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
+#     assert badge == "1"  
 
-    # if total_productos >= 2:
-    #     products[0].find_element(By.TAG_NAME, 'button').click()
-    #     products[1].find_element(By.TAG_NAME, 'button').click()
-
-    #     badge = driver.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-    #     assert badge == "2"
+    if total_productos >= 3:
+        products[0].find_element(By.TAG_NAME, 'button').click()
+        products[1].find_element(By.TAG_NAME, 'button').click()
+        products[2].find_element(By.TAG_NAME, 'button').click()
 
 
+        badge = driver.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
+        assert badge == "3"
 
-    # def test_carrito( driver ):
-    # login_saucedemo( driver )
-
-    # products = driver.find_elements(By.CLASS_NAME, 'inventory_item')
-    # # total_productos = len(products)
-    # assert len(products) > 0
-
-    # products[0].find_element(By.TAG_NAME, 'button').click()
-
-    # badge = driver.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-    # assert badge == "1"  
-
-    # # if total_productos >= 2:
-    # #     products[0].find_element(By.TAG_NAME, 'button').click()
-    # #     products[1].find_element(By.TAG_NAME, 'button').click()
-
-    # #     badge = driver.find_element(By.CLASS_NAME, 'shopping_cart_badge').text
-    # #     assert badge == "2"
+        #captura manual
+        # driver.save_screenshot("../screenshots/carrito3.png") 
